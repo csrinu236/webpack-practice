@@ -1,0 +1,17 @@
+// this file will also be bundled into the same index.css file
+@import url('./main.lazy.scss');
+
+.index {
+  font-size: 10rem;
+}
+
+.contentbase-image {
+  margin-bottom: 2rem;
+}
+.contentbase-image img {
+  border-radius: var(--radius);
+}
+
+.btn {
+  margin-bottom: 2rem;
+}
