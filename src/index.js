@@ -21,6 +21,8 @@ sectionCenter.appendChild(myImage);
 const importBtn = document.querySelector('.import-btn');
 const lazyLoadCssBtn = document.querySelector('.lazy-load-css-btn');
 
+import * as moment from 'moment';
+
 lazyLoadCssBtn.addEventListener('click', () => {
   // import('./normalize.scss');
 });
