@@ -16,22 +16,22 @@
  *  Ex: js/[name].[contenthash].js
  */
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 // const webpack = require('webpack');
 module.exports = {
   entry: {
     // you can have scss files imports only in one of the following files
     // selectors: './src/selectors.js',
-    index: ['./src/index.js'],
-    about: ['./src/about.js'],
+    index: ["./src/index.js"],
+    about: ["./src/about.js"],
   },
-  mode: 'development',
+  mode: "development",
   output: {
     // placing all js files inside a js folder makes it easy process
-    filename: 'js/[name].bundle.js',
-    path: __dirname + '/dist',
+    filename: "js/[name].bundle.js",
+    path: __dirname + "/dist",
     clean: true,
 
     // webpack dev server places all files in publicRoot url(localhost:9000) + assets folder
@@ -40,9 +40,9 @@ module.exports = {
 
     // this option is used to determine the naming pattern
     // chunk imports created during the code-splitting process
-    chunkFilename: 'chunksFiles/[name].chunk.js',
+    chunkFilename: "chunksFiles/[name].chunk.js",
   },
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -50,7 +50,7 @@ module.exports = {
         // MiniCssExtractPlugin.loader will extract css into to seperate files for ease
         // 'css-loader is responsible for resolving @import and url() statements within the CSS files.
         // 'postcss-loader is used after css-loader to apply PostCSS transformations, such as Autoprefixer.
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         // use: [
         //   { loader: 'style-loader', options: { injectType: 'lazyStyleTag' } },
         //   'css-loader',
@@ -70,7 +70,14 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
+      },
+      {
+        test: /\.js$/,
+        // javascript can not live without babel-loader
+        // here we only mention loader, remaining config is available in .babelrc
+        use: ["babel-loader"],
+        exclude: /node_modules/,
       },
     ],
   },
@@ -78,22 +85,22 @@ module.exports = {
   plugins: [
     // connecting bundled files will be done here
     new HtmlWebpackPlugin({
-      title: 'Home Page',
-      filename: 'index.html',
-      template: 'public/index.html',
-      chunks: ['index'],
+      title: "Home Page",
+      filename: "index.html",
+      template: "public/index.html",
+      chunks: ["index"],
     }),
 
     new HtmlWebpackPlugin({
-      title: 'About Page',
-      filename: 'about.html',
-      template: 'public/about.html',
-      chunks: ['about'],
+      title: "About Page",
+      filename: "about.html",
+      template: "public/about.html",
+      chunks: ["about"],
     }),
 
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename: 'css/[name].[id].css',
+      filename: "css/[name].css",
+      chunkFilename: "css/[name].[id].css",
     }),
 
     // new webpack.HotModuleReplacementPlugin(),
@@ -106,11 +113,11 @@ module.exports = {
     // to serve NON-bundled files like images/css/html files
     // (check Ben10 file), target this folder.
     static: {
-      directory: __dirname + '/contentbase-files',
+      directory: __dirname + "/contentbase-files",
     },
 
     port: 9000,
-    hot: 'only',
+    hot: "only",
     // devMiddleware: {
     //   publicPath: '/assets',
     // },
@@ -122,7 +129,7 @@ module.exports = {
 
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: "all",
     },
   },
 };

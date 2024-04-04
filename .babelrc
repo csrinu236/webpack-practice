@@ -1,0 +1,38 @@
+// We have preset-env
+// we have preset-react
+// we have preset-typescript as well
+
+// we install babel-core as well, because it is on top of core-js package
+// which is the most important package for supplying polyfills for the babel
+
+// check babel documentation for each type of preset you want
+
+// Async await es7 things
+// Arrowfunctions es6 things
+// Object.values es8 things
+// Old browsers won't understand this so we need to add polyfills
+// that's why babel-core package.
+
+// es5 js doesnot know const let, there are browser which can only understand
+// es5 js, so it is always advisable to transpile to es5 at least.
+
+// const & let should become "var".
+
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": "11",
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
+        },
+        "corejs": "3.6.5",
+        "useBuiltIns": "usage"
+      }
+    ]
+  ]
+}
