@@ -87,14 +87,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Home Page",
       filename: "index.html",
-      template: "public/index.html",
+      template: "public/index.html", // takes the reference of these files and just adds the bundled files.
       chunks: ["index"],
     }),
 
     new HtmlWebpackPlugin({
       title: "About Page",
       filename: "about.html",
-      template: "public/about.html",
+      template: "public/about.html", // takes the reference of these files and just adds the bundled files.
       chunks: ["about"],
     }),
 
