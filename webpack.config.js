@@ -33,6 +33,8 @@ module.exports = {
     filename: "js/[name].bundle.js",
     path: __dirname + "/dist",
     clean: true,
+    filename: "js/[name].[contenthash].js",
+    assetModuleFilename: "[name].[ext]", //image names will be as it is in the bundled base.
 
     // webpack dev server places all files in publicRoot url(localhost:9000) + assets folder
     // like localhost:9000/assets, serve all files via localhost:9000/assets only.
@@ -42,12 +44,13 @@ module.exports = {
     // chunk imports created during the code-splitting process
     chunkFilename: "chunksFiles/[name].chunk.js",
   },
+  // devtool: "source-map",
   devtool: "inline-source-map",
   module: {
     rules: [
       {
         test: /\.scss$/i,
-        // MiniCssExtractPlugin.loader will extract css into to seperate files for ease
+        // MiniCssExtractPlugin.loader will extract css into to seperate files for ease instead of putting them in js file as a multi fruit salad.
         // 'css-loader is responsible for resolving @import and url() statements within the CSS files.
         // 'postcss-loader is used after css-loader to apply PostCSS transformations, such as Autoprefixer.
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
